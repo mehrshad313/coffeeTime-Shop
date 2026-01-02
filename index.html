@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee shop </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar section-content">
+            <a href="#" class="nav-logo">
+                <h2 class="logo-text">
+                    ☕ Coffee
+                </h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about-us" class="nav-link">
+                        About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">
+                        Menu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Testimonials
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Gallery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="page2.html" class="nav-link">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-section" id="home">
+            <div class="section-content">
+                <div class="hero-details">
+                    <h2 class="title">
+                        Best Coffee
+                    </h2>
+                    <h3 class="subtitle">
+                        Make your day great with our special coffee!
+                    </h3>
+                    <p class="description">
+                        Wellcome to our coffee paradise, where every bean tells a story and every cup sparks joy.
+                    </p>
+                    <div class="buttons">
+                        <a href="#menu" class="button order-now">Order Now!</a>
+                        <a href="page2.html" class="button contact-us">Contact Us!</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="img/—Pngtree—flying cup of coffee with_15739217.png" alt="hero" class="hero-image">
+                </div>
+            </div>
+        </section>
+        <section class="about-section" id="about-us">
+            <div class="section-content">
+                <div class="about-image-wrapper">
+                    <img src="img/about-us.avif" alt="About" class="about-image">
+                </div>
+                <div class="about-details">
+                    <h2 class="section-title">
+                        About Us
+                    </h2>
+                    <p>
+                        At Coffee House in Berndorf, Germany, we pride ourselves on being a go-to destination for coffee
+                        lovers and conversation seekers alike. We're dedicated to providing an exceptional coffee
+                        experience in a cozy and inviting atmosphere, where guests can relax, unwind, and enjoy theire
+                        time in comfort.
+                    </p>
+                    <div class="social-link-list">
+                        <a href="https://facebook.com/coffeetime" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://instagram.com/coffeetime" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://Twitter.com/coffeetime" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="menu-section" id="menu">
+  <h2 class="section-title">Our Menu</h2>
+
+  <div class="section-content">
+    <ul class="menu-list">
+
+      <li class="menu-item">
+        <img src="img/—Pngtree—coffee cup with steam_20109776.png" alt="Hot Beverage" class="menu-image">
+        <h3 class="name">Hot Beverages</h3>
+        <p>Wide range of steaming hot coffee to make you fresh and light.</p>
+
+        <span class="price">$5</span>
+        <button class="add-btn" onclick="addToCart('Hot Beverages',5)">Add</button>
+        <span class="count" id="Hot Beverages-count">0</span>
+      </li>
+
+      <li class="menu-item">
+        <img src="img/—Pngtree—a vibrant--cold-drink-glasses_20509166.png" alt="Cold Beverage" class="menu-image">
+        <h3 class="name">Cold Beverages</h3>
+        <p>Creamy and frothy cold coffee to make you cool.</p>
+
+        <span class="price">$6</span>
+        <button class="add-btn" onclick="addToCart('Cold Beverages',6)">Add</button>
+        <span class="count" id="Cold Beverages-count">0</span>
+      </li>
+
+      <li class="menu-item">
+        <img src="img/images.jpeg" alt="Refreshment" class="menu-image">
+        <h3 class="name">Refreshment</h3>
+        <p>Fruit and icy refreshing drink to make feel refresh.</p>
+
+        <span class="price">$4</span>
+        <button class="add-btn" onclick="addToCart('Refreshment',4)">Add</button>
+        <span class="count" id="Refreshment-count">0</span>
+      </li>
+
+      <li class="menu-item">
+        <img src="img/combos.png" alt="Special Combos" class="menu-image">
+        <h3 class="name">Special Combos</h3>
+        <p>Your favorite eating and drinking combinations.</p>
+
+        <span class="price">$10</span>
+        <button class="add-btn" onclick="addToCart('Special Combos',10)">Add</button>
+        <span class="count" id="SpecialCombos-count">0</span>
+      </li>
+
+      <li class="menu-item">
+        <img src="img/dessert (2).jpg" alt="Dessert" class="menu-image">
+        <h3 class="name">Dessert</h3>
+        <p>Satiate your palate and take you on a culinary treat.</p>
+
+        <span class="price">$7</span>
+        <button class="add-btn" onclick="addToCart('Dessert',7)">Add</button>
+        <span class="count" id="Dessert-count">0</span>
+      </li>
+
+      <li class="menu-item">
+        <img src="img/burger.jpg" alt="Burger and French Fries" class="menu-image">
+        <h3 class="name">Burger & French Fries</h3>
+        <p>Quick bites to satisfy your small size hunger.</p>
+
+        <span class="price">$8</span>
+        <button class="add-btn" onclick="addToCart('Burger & Fries',8)">Add</button>
+        <span class="count" id="Burger & Fries-count">0</span>
+      </li>
+
+    </ul>
+  </div>
+
+  <button class="checkout-btn" onclick="showInvoice()">Show Invoice</button>
+  <div id="invoice"></div>
+</section>
+
+    </main>
+    <footer class="coffee-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <h2>Coffee Time</h2>
+                <p>Start your day with our coffee ☕</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Shortcuts</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about-us"> About Us</a></li>
+                    <li><a href="page2.html">  Conctact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us  </h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com/coffeetime">Instagram</a>
+                    <a href="https://telegram.com/coffeetime">Telegram</a>
+                    <a href="https://Twitter.com/coffeetime">Twitter</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Coffee Time.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
