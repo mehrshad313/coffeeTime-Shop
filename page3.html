@@ -1,0 +1,280 @@
+<!-- page3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu-section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-item {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    .menu-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .menu-name {
+      font-size: 1.2rem;
+      margin: 10px 0 5px 0;
+    }
+
+    .menu-price {
+      color: #ffd700;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .add-to-cart {
+      background-color: #ffd700;
+      border: none;
+      color: #000;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #e6c200;
+    }
+
+    @media (max-width: 600px) {
+      .menu-image {
+        height: 120px;
+      }
+    }
+
+    /* Filter Inputs */
+    .filter-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-container input,
+    .filter-container button {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 0 5px;
+    }
+
+    .filter-container button#expensiveFilter {
+      background-color: #ffd700;
+      color: #000;
+    }
+
+    .filter-container button#resetFilter {
+      background-color: #ff6f61;
+      color: #fff;
+    }
+
+    .filter-container button#invoiceButton {
+      background-color: #00bfff;
+      color: #fff;
+    }
+
+    .filter-container input {
+      width: 200px;
+    }
+
+    /* Cart Display */
+    #totalPrice {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #ffd700;
+    }
+
+    #cartCount {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #ff6f61;
+    }
+    #border{
+        border-color: #e6c200;
+        border-width: 13px;
+        border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="menu-section" id="menu">
+    <h2 class="section-title">Our Menu</h2>
+    <hr id="border">
+    <br><br>
+
+    <!-- Filter Inputs -->
+    <div class="filter-container">
+      <input type="text" id="searchInput" placeholder="Search by name...">
+      <button id="expensiveFilter">Expensive &gt; $10</button>
+      <button id="resetFilter">Reset</button>
+      <button id="invoiceButton">Invoice / Checkout</button>
+    </div>
+
+    <ul class="menu-list"></ul>
+
+    <p id="totalPrice">Total Price: $0.00</p>
+    <p id="cartCount">Items in Cart: 0</p>
+  </section>
+
+  <script>
+    const products = [
+      { name: "Espresso", price: 5, img: "img/espersso.png" },
+      { name: "Latte", price: 7, img: "img/lattee.png" },
+      { name: "burger and cola", price: 11, img: "img/smash.png" },
+      { name: "cheese burger and sprite", price: 13, img: "img/smash.png" },
+      { name: "Mocha", price: 8, img: "img/mocha.png" },
+      { name: "mojito", price: 7, img: "img/mojito.png" },
+      { name: "smashed burger", price: 9.5, img: "img/smash.png" },
+      { name: "Iced Coffee", price: 6.12, img: "img/icedCoffee.png" },
+      { name: "Cold Brew", price: 7.25, img: "img/coldBrew.png" },
+      { name: "tiramisu", price: 6, img: "img/tiramisu.png" },
+      { name: "ice cream", price: 5, img: "img/iceCream.png" },
+      { name: "royale burger", price: 17, img: "img/royale-burger.png" }
+    ];
+
+    const menuList = document.querySelector(".menu-list");
+    const searchInput = document.getElementById("searchInput");
+    const expensiveFilter = document.getElementById("expensiveFilter");
+    const resetFilter = document.getElementById("resetFilter");
+    const invoiceButton = document.getElementById("invoiceButton");
+    const totalPriceElem = document.getElementById("totalPrice");
+    const cartCountElem = document.getElementById("cartCount");
+
+    let cart = [];
+
+    // نمایش جمع قیمت محصولات
+    function displayTotal(items) {
+      const total = items.reduce((acc, product) => acc + product.price, 0);
+      totalPriceElem.textContent = `Total Price: $${total.toFixed(2)}`;
+    }
+
+    // نمایش سبد خرید
+    function displayCart() {
+      cartCountElem.textContent = `Items in Cart: ${cart.length}`;
+      const totalCartPrice = cart.reduce((acc, product) => acc + product.price, 0);
+      totalPriceElem.textContent = `Total Price: $${totalCartPrice.toFixed(2)}`;
+    }
+
+    // نمایش محصولات
+    function displayProducts(items) {
+      const productItems = items.map((product, index) => `
+        <li class="menu-item">
+          <img src="${product.img}" alt="${product.name}" class="menu-image">
+          <h3 class="menu-name">${product.name}</h3>
+          <p class="menu-price">$${product.price}</p>
+          <button class="add-to-cart" data-index="${index}">Add to Cart</button>
+        </li>
+      `).join("");
+      menuList.innerHTML = productItems;
+
+      // EventListener دکمه‌های Add to Cart
+      const addButtons = document.querySelectorAll(".add-to-cart");
+      addButtons.forEach(button => {
+        button.addEventListener("click", function() {
+          const productIndex = this.getAttribute("data-index");
+          cart.push(items[productIndex]);
+          displayCart();
+        });
+      });
+
+      displayTotal(items);
+    }
+
+    // نمایش همه محصولات در ابتدا
+    displayProducts(products);
+
+    // فیلتر با نام
+    searchInput.addEventListener("input", function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+      displayProducts(filteredProducts);
+    });
+
+    // فیلتر محصولات گرون‌تر از ۱۰ دلار
+    expensiveFilter.addEventListener("click", function() {
+      const expensiveProducts = products.filter(product => product.price > 10);
+      displayProducts(expensiveProducts);
+    });
+
+    // دکمه ریست
+    resetFilter.addEventListener("click", function() {
+      displayProducts(products);
+      searchInput.value = "";
+      cart = [];
+      displayCart();
+    });
+
+    // دکمه Invoice / Checkout
+    invoiceButton.addEventListener("click", function() {
+      if(cart.length === 0){
+        alert("Your cart is empty!");
+        return;
+      }
+      let message = "Invoice:\n\n";
+      cart.forEach(product => {
+        message += `${product.name} - $${product.price}\n`;
+      });
+      const totalCartPrice = cart.reduce((acc, product) => acc + product.price, 0);
+      message += `\nTotal: $${totalCartPrice.toFixed(2)}`;
+      alert(message);
+
+      // بعد از نهایی کردن، سبد خرید پاک شود
+      cart = [];
+      displayCart();
+    });
+  </script>
+
+</body>
+</html>

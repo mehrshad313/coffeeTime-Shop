@@ -32,3 +32,18 @@ menuCloseButton.addEventListener("click", () => menuOpenButton.click());
 
     invoice.innerHTML += `<hr><strong>Total: $${total}</strong>`;
   }
+
+  const products = [
+  { name: "Espresso", price: 5, img: "img/espersso.png" },
+  { name: "Latte", price: 7, img: "img/espersso.png" },
+  { name: "burger and cola", price: 6, img: "img/smash.png" },
+  { name: "cheese burger and sprite", price: 5, img: "img/smash.png" },
+  { name: "Mocha", price: 8, img: "img/mocha.png" },
+  { name: "mojito ", price: 7, img: "img/mojito.png" },
+  { name: "smashed burger", price: 6, img: "img/smash.png" },
+  { name: "Iced Coffee", price: 6, img: "img/espersso.png" },
+  { name: "Cold Brew", price: 7, img: "img/espersso.png" },
+  { name: "tiramisu", price: 8, img: "img/mocha.png" },
+  { name: "ice cream", price: 5, img: "img/mojito.png" },
+  { name: "royale burger", price: 6, img: "img/royale-burger.png" }
+]
